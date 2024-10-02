@@ -26,24 +26,24 @@ const MenuItem = ({ product }) => {
             type="image/jpeg"
           />
           <source media="" srcSet={image.thumbnail} type="image/jpeg" />
-          <img src={image.mobile} alt="" className="rounded-md flex-1" />
+          <img src={image.mobile} alt="" className="flex-1 rounded-md" />
         </picture>
       </figure>
-      <div className="flex flex-col mt-8">
+      <div className="mt-8 flex flex-col">
         <p className="text-rose400">{category}</p>
-        <p className="text-rose900 font-bold">{name}</p>
-        <p className="text-red font-medium">${price.toFixed(2)}</p>
+        <p className="font-bold text-rose900">{name}</p>
+        <p className="font-medium text-red">${price.toFixed(2)}</p>
       </div>
 
       {isOpen && (
         <Button onClick={() => setIsOpen((open) => !open)} type="primary">
-          <img src={addToCartIcon} alt="" className="" />
+          <img src={addToCartIcon} alt="" />
           <span className="font-bold">Add to cart</span>
         </Button>
       )}
       {!isOpen && (
         <Button type="secondary">
-          <div className="w-6 h-6 border-2 border-rose50 rounded-full hover:bg-rose50 flex items-center justify-center">
+          <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-rose50 hover:bg-rose50">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="10"
@@ -55,12 +55,11 @@ const MenuItem = ({ product }) => {
             </svg>
           </div>
           <span className="text-rose50">0</span>
-          <div className="w-6 h-6 border-2 rounded-full hover:bg-rose50  border-rose50 flex items-center justify-center">
+          <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-rose50 hover:bg-rose50">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="10"
               height="10"
-              class="fill-current"
               fill="none"
               viewBox="0 0 10 10"
             >

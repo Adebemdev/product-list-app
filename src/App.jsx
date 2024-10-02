@@ -3,6 +3,7 @@ import Cart from './features/cart/Cart';
 import Menu from './features/menu/Menu';
 import { Header } from './ui/Header';
 import { useEffect } from 'react';
+import Order from './features/order/Order';
 
 function App() {
   const [menu, setMenu] = useState([]);
@@ -17,10 +18,11 @@ function App() {
   }, []);
 
   return (
-    <main className="bg-rose100 min-h-screen h-screen overflow-hidden p-4 mobile:overflow-scroll mobile:grid mobile:grid-rows-[1fr_1fr] desktop:grid desktop:grid-cols-[1fr_auto] desktop:gap-x-8  desktop:grid-rows-[50px_1fr]">
+    <main className="relative h-screen min-h-screen overflow-hidden bg-rose100 p-4 mobile:grid mobile:grid-rows-[1fr_1fr] mobile:overflow-scroll desktop:grid desktop:grid-cols-[1fr_auto] desktop:grid-rows-[50px_1fr] desktop:gap-x-8">
       <Header />
       <Menu menu={menu} />
       <Cart />
+      <Order />
     </main>
   );
 }

@@ -24,8 +24,8 @@ const cartData = [
 
 const Cart = () => {
   return (
-    <section className="bg-rose50 mt-8 rounded-lg mobile:w-full mobile:p-4 desktop:p-8 desktop:h-[500px] desktop:col-start-2 desktop:col-end-3">
-      <h3 className="text-red text-xl font-bold desktop:text-xl">
+    <section className="mt-8 rounded-lg bg-rose50 mobile:w-full mobile:p-4 desktop:col-start-2 desktop:col-end-3 desktop:min-h-[420px] desktop:p-4">
+      <h3 className="text-xl font-bold text-red desktop:text-xl">
         Your cart (0)
       </h3>
 
@@ -33,16 +33,18 @@ const Cart = () => {
         <CartItem cartItem={cartItem} key={index} />
       ))}
 
-      <div className="flex py-4 items-center justify-between">
-        <p className="text-lg capitalize">order total</p>
-        <p className="font-bold text-xl text-rose900">$46.50</p>
+      <div className="flex items-center justify-between py-3">
+        <p className="text-base font-medium capitalize text-rose300">
+          order total
+        </p>
+        <p className="text-xl font-bold text-rose900">$46.50</p>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         <Button type="subTertiary">
           <img src={carbonNeutralIcon} alt="" className="" />
           <span className="text-sm tracking-tight">
             This is a{' '}
-            <span className="text-rose900 font-bold">carbon-neutral</span>{' '}
+            <span className="font-bold text-rose900">carbon-neutral</span>{' '}
             delivery
           </span>
         </Button>
