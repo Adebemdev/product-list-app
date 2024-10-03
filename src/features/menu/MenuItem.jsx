@@ -1,11 +1,34 @@
 import Button from '../../ui/Button';
 import addToCartIcon from '../../assets/icons/icon-add-to-cart.svg';
-import { useState } from 'react';
 
-const MenuItem = ({ product }) => {
-  const [isOpen, setIsOpen] = useState(true);
-
+const MenuItem = ({ product, dispatch, cart }) => {
   const { image, category, name, price } = product;
+  const handleAddToCart = (item) => {
+    dispatch({
+      type: 'ADD_ITEM',
+      payload: item,
+    });
+
+    isItemInCart(item.id);
+  };
+
+  const handleIncrement = (item) => {
+    dispatch({ type: 'INCREMENT_ITEM', payload: item });
+  };
+  const handledecrement = (item) => {
+    dispatch({ type: 'DECREMENT_ITEM', payload: item });
+  };
+
+  const updateQuantity = (productId) => {
+    const item = cart.find((item) => item.id === productId);
+    return item ? item.quantity : 0;
+  };
+
+  const isItemInCart = (itemId) => {
+    return cart.some((item) => item.id === itemId);
+  };
+
+  let quantity = updateQuantity(product.id);
 
   return (
     <div className="relative">
@@ -26,7 +49,11 @@ const MenuItem = ({ product }) => {
             type="image/jpeg"
           />
           <source media="" srcSet={image.thumbnail} type="image/jpeg" />
-          <img src={image.mobile} alt="" className="flex-1 rounded-md" />
+          <img
+            src={image.mobile}
+            alt=""
+            className={`rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
+          />
         </picture>
       </figure>
       <div className="mt-8 flex flex-col">
@@ -34,16 +61,17 @@ const MenuItem = ({ product }) => {
         <p className="font-bold text-rose900">{name}</p>
         <p className="font-medium text-red">${price.toFixed(2)}</p>
       </div>
-
-      {isOpen && (
-        <Button onClick={() => setIsOpen((open) => !open)} type="primary">
+      {quantity === 0 ? (
+        <Button onClick={() => handleAddToCart(product)} type="primary">
           <img src={addToCartIcon} alt="" />
           <span className="font-bold">Add to cart</span>
         </Button>
-      )}
-      {!isOpen && (
+      ) : (
         <Button type="secondary">
-          <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-rose50 hover:bg-rose50">
+          <div
+            className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-rose50 hover:bg-rose50"
+            onClick={() => handledecrement(product)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="10"
@@ -54,8 +82,11 @@ const MenuItem = ({ product }) => {
               <path fill="hsl(20, 50%, 98%)" d="M0 .375h10v1.25H0V.375Z" />
             </svg>
           </div>
-          <span className="text-rose50">0</span>
-          <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-rose50 hover:bg-rose50">
+          <span className="text-rose50">{quantity}</span>
+          <div
+            className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-rose50 hover:bg-rose50"
+            onClick={() => handleIncrement(product)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="10"

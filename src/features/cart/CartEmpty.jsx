@@ -1,7 +1,7 @@
 const CartEmpty = () => {
   return (
-    <div className="hidden">
-      <div className="flex flex-col items-center justify-center mt-8 gap-4">
+    <div className="">
+      <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="128"
