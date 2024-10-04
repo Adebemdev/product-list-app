@@ -1,8 +1,9 @@
 import Button from '../../ui/Button';
 import orderIcon from '../../assets/icons/icon-order-confirmed.svg';
 import OrderItem from './OrderItem';
+import { formatCurrency } from '../../utensils/helper';
 
-const Order = ({ cart, isOpen, handleOrder }) => {
+const Order = ({ cart = [], isOpen, handleOrder }) => {
   const totalPrice = cart.reduce(
     (total, cartItem) => total + cartItem.price * cartItem.quantity,
     0,
@@ -11,12 +12,18 @@ const Order = ({ cart, isOpen, handleOrder }) => {
   return (
     isOpen && (
       <>
-        <div className="fixed inset-0 z-40 bg-rose900 opacity-50"></div>
+        <div
+          role="dialog"
+          className="fixed inset-0 z-40 bg-rose900 opacity-50"
+        ></div>
         <div className="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center">
           <div className="mt-20 h-auto min-h-80 w-full max-w-full rounded-lg bg-rose50 p-8 shadow-lg desktop:col-start-2 desktop:col-end-3 desktop:mt-0 desktop:h-auto desktop:w-full desktop:max-w-md">
             <div>
-              <img src={orderIcon} alt="" className="mb-2 desktop:mb-4" />
-              <p className="mb-2 text-3xl font-bold capitalize tracking-normal desktop:text-3xl">
+              <img src={orderIcon} alt="" className="mb-2 desktop:mb-2" />
+              <p
+                data-testid="order-confirmed"
+                className="mb-2 text-3xl font-bold capitalize tracking-normal desktop:text-3xl"
+              >
                 order{' '}
                 <span className="block desktop:inline-block">confrimed</span>
               </p>
@@ -32,7 +39,12 @@ const Order = ({ cart, isOpen, handleOrder }) => {
                 <p className="text-base font-medium capitalize text-rose300">
                   order total
                 </p>
-                <p className="text-xl font-bold text-rose900">${totalPrice}</p>
+                <p
+                  data-testid="totalPrice"
+                  className="text-xl font-bold text-rose900"
+                >
+                  {formatCurrency(totalPrice.toFixed(2))}
+                </p>
               </div>
             </div>
             <Button type="tertiary" onClick={handleOrder}>

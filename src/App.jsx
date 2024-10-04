@@ -118,7 +118,6 @@ function App() {
           id: index + 1,
         }));
         setProducts(productsWithId);
-        console.log(productsWithId);
       })
       .catch((error) => {
         console.error('Erro fetching items data', error);
@@ -133,7 +132,7 @@ function App() {
   };
 
   return (
-    <main className="relative h-screen min-h-screen overflow-hidden bg-rose100 p-4 mobile:grid mobile:grid-rows-[1fr_1fr] mobile:overflow-scroll desktop:grid desktop:grid-cols-[1fr_400px] desktop:grid-rows-[50px_1fr] desktop:gap-x-8">
+    <div className="relative h-screen min-h-screen overflow-hidden bg-rose100 p-4 mobile:grid mobile:grid-rows-[1fr_1fr] mobile:overflow-scroll desktop:grid desktop:grid-cols-[1fr_400px] desktop:grid-rows-[50px_1fr] desktop:gap-x-8 desktop:p-8">
       <Header />
       <Menu products={products} dispatch={dispatch} cart={cart} />
       <Cart
@@ -142,7 +141,7 @@ function App() {
         openModal={() => setIsModalOpen(true)}
       />
       <Order cart={cart} isOpen={isModalOpen} handleOrder={handleOrder} />
-    </main>
+    </div>
   );
 }
 

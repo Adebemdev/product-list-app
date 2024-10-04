@@ -3,6 +3,7 @@ import Button from '../../ui/Button';
 import carbonNeutralIcon from '../../assets/icons/icon-carbon-neutral.svg';
 import removeItemIcon from '../../assets/icons/icon-remove-item.svg';
 import CartEmpty from './CartEmpty';
+import { formatCurrency } from '../../utensils/helper';
 
 const Cart = ({ cart, dispatch, openModal }) => {
   const totalPrice = cart.reduce(
@@ -11,7 +12,10 @@ const Cart = ({ cart, dispatch, openModal }) => {
   );
 
   return (
-    <section className="mt-8 rounded-lg bg-rose50 mobile:w-full mobile:p-4 desktop:col-start-2 desktop:col-end-3 desktop:h-full desktop:min-h-[30rem] desktop:p-4">
+    <div
+      data-testid="cart-data"
+      className="mt-8 rounded-lg bg-rose50 mobile:w-full mobile:p-4 desktop:col-start-2 desktop:col-end-3 desktop:h-full desktop:min-h-[30rem] desktop:p-4"
+    >
       <h3 className="text-xl font-bold text-red desktop:text-xl">
         Your cart ({cart.length})
       </h3>
@@ -32,18 +36,20 @@ const Cart = ({ cart, dispatch, openModal }) => {
                     {cartItem.quantity}x
                   </p>
                   <p className="text-sm font-medium text-rose300">
-                    @ ${cartItem.price}
+                    @ {formatCurrency(cartItem.price)}
                   </p>
                   <p className="text-sm font-medium text-rose500">
-                    ${(cartItem.quantity * cartItem.price).toFixed(2)}
+                    {formatCurrency(
+                      (cartItem.quantity * cartItem.price).toFixed(2),
+                    )}
                   </p>
                 </div>
               </div>
               <div className="rounded-full border-2 border-rose400 p-1">
                 <img
                   src={removeItemIcon}
-                  alt=""
-                  className=""
+                  alt="removeIcon"
+                  data-testid="remove-icon"
                   onClick={() =>
                     dispatch({ type: 'REMOVE_ITEM', payload: cartItem })
                   }
@@ -56,26 +62,35 @@ const Cart = ({ cart, dispatch, openModal }) => {
               order total
             </p>
             <p className="text-xl font-bold text-rose900">
-              ${totalPrice.toFixed(2)}
+              {formatCurrency(totalPrice.toFixed(2))}
             </p>
           </div>
           <div className="flex flex-col gap-3">
-            <Button type="subTertiary">
-              <img src={carbonNeutralIcon} alt="" className="" />
+            <Button
+              type="subTertiary"
+              label="carbon-neutral"
+              aria-label="carbon-neutral"
+            >
+              <img src={carbonNeutralIcon} alt="" />
               <span className="text-sm tracking-tight">
                 This is a{' '}
                 <span className="font-bold text-rose900">carbon-neutral</span>{' '}
                 delivery
               </span>
             </Button>
-            <Button type="tertiary" onClick={openModal}>
-              confrim order
+            <Button
+              type="tertiary"
+              onClick={openModal}
+              label="confirm order"
+              aria-label="confirm order"
+            >
+              confirm order
             </Button>
           </div>
         </div>
       )}
       {cart.length === 0 && <CartEmpty />}
-    </section>
+    </div>
   );
 };
 

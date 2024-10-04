@@ -1,8 +1,14 @@
 import Button from '../../ui/Button';
 import addToCartIcon from '../../assets/icons/icon-add-to-cart.svg';
+import { formatCurrency } from '../../utensils/helper';
 
 const MenuItem = ({ product, dispatch, cart }) => {
   const { image, category, name, price } = product;
+
+  if (!image || !image.desktop) {
+    return <p>Image not available</p>;
+  }
+
   const handleAddToCart = (item) => {
     dispatch({
       type: 'ADD_ITEM',
@@ -51,7 +57,7 @@ const MenuItem = ({ product, dispatch, cart }) => {
           <source media="" srcSet={image.thumbnail} type="image/jpeg" />
           <img
             src={image.mobile}
-            alt=""
+            alt={name}
             className={`rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
           />
         </picture>
@@ -59,11 +65,21 @@ const MenuItem = ({ product, dispatch, cart }) => {
       <div className="mt-8 flex flex-col">
         <p className="text-rose400">{category}</p>
         <p className="font-bold text-rose900">{name}</p>
-        <p className="font-medium text-red">${price.toFixed(2)}</p>
+        <p className="font-medium text-red">
+          {formatCurrency(price.toFixed(2))}
+        </p>
       </div>
       {quantity === 0 ? (
-        <Button onClick={() => handleAddToCart(product)} type="primary">
-          <img src={addToCartIcon} alt="" />
+        <Button
+          aria-label="button-name"
+          onClick={() => handleAddToCart(product)}
+          type="primary"
+        >
+          <img
+            src={addToCartIcon}
+            alt="icon-button"
+            data-testid="button-icon"
+          />
           <span className="font-bold">Add to cart</span>
         </Button>
       ) : (
@@ -71,6 +87,7 @@ const MenuItem = ({ product, dispatch, cart }) => {
           <div
             className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-rose50 hover:bg-rose50"
             onClick={() => handledecrement(product)}
+            data-testid="decrement-button"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +95,7 @@ const MenuItem = ({ product, dispatch, cart }) => {
               height="2"
               fill="none"
               viewBox="0 0 10 2"
+              data-testid="decrement-button"
             >
               <path fill="hsl(20, 50%, 98%)" d="M0 .375h10v1.25H0V.375Z" />
             </svg>
@@ -93,6 +111,7 @@ const MenuItem = ({ product, dispatch, cart }) => {
               height="10"
               fill="none"
               viewBox="0 0 10 10"
+              data-testid="icon-2"
             >
               <path
                 fill="hsl(20, 50%, 98%)"
