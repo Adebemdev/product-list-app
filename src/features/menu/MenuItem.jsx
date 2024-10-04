@@ -48,8 +48,8 @@ const MenuItem = ({ product, dispatch, cart }) => {
         />
         <source
           media="(min-width:768px)"
-          width="1920"
-          height="1080"
+          width="100"
+          height="100"
           srcSet={image.desktop}
           type="image/jpeg"
         />
