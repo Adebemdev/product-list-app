@@ -132,7 +132,7 @@ function App() {
   };
 
   return (
-    <div className="relative h-screen min-h-screen overflow-hidden bg-rose100 p-4 mobile:grid mobile:grid-rows-[1fr_1fr] mobile:overflow-scroll desktop:grid desktop:grid-cols-[1fr_400px] desktop:grid-rows-[50px_1fr] desktop:gap-x-8 desktop:p-8">
+    <div className="laptop:grid laptop:grid-cols-[1fr_400px] laptop:grid-rows-[50px_1fr] laptop:gap-x-8 laptop:p-8 relative h-screen min-h-screen overflow-hidden bg-rose100 p-4 mobile:grid mobile:grid-rows-[1fr_1fr] mobile:overflow-scroll">
       <Header />
       <Menu products={products} dispatch={dispatch} cart={cart} />
       <Cart

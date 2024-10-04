@@ -40,22 +40,22 @@ const MenuItem = ({ product, dispatch, cart }) => {
     <div className="relative">
       <picture>
         <source
-          media="(max-width:767px)"
+          media="(max-width: 767px)"
+          srcSet={`${image.mobile} 360w`}
+          sizes="(max-width: 767px) 100vw, 360px"
           width="360"
           height="480"
-          srcSet={image.mobile}
-          type="image/jpeg"
         />
         <source
-          media="(min-width:768px)"
-          width="100"
-          height="100"
-          srcSet={image.desktop}
-          type="image/jpeg"
+          media="(min-width: 768px)"
+          srcSet={`${image.desktop} 1920w`}
+          sizes="(min-width: 768px) 100vw, 1920px"
+          width="1920"
+          height="1080"
         />
         <source media="" srcSet={image.thumbnail} type="image/jpeg" />
         <img
-          src={image.mobile}
+          src={image.thumbnail}
           alt={name}
           className={`w-full rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
         />

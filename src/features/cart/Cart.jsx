@@ -14,9 +14,9 @@ const Cart = ({ cart, dispatch, openModal }) => {
   return (
     <div
       data-testid="cart-data"
-      className="mt-8 rounded-lg bg-rose50 mobile:w-full mobile:p-4 desktop:col-start-2 desktop:col-end-3 desktop:h-full desktop:min-h-[30rem] desktop:p-4"
+      className="laptop:col-start-2 laptop:col-end-3 laptop:h-full laptop:min-h-[30rem] laptop:p-4 mt-8 rounded-lg bg-rose50 mobile:w-full mobile:p-4"
     >
-      <h3 className="text-xl font-bold text-red desktop:text-xl">
+      <h3 className="laptop:text-xl text-xl font-bold text-red">
         Your cart ({cart.length})
       </h3>
       {cart.length > 0 && (

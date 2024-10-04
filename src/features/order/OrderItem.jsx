@@ -33,7 +33,7 @@ const OrderItem = ({ orderItem }) => {
           )}
         </div>
 
-        <div className="flex flex-col gap-2 desktop:gap-2.5">
+        <div className="flex flex-col gap-2 laptop:gap-2.5">
           <p className="text-base font-bold capitalize">
             {isMobile && condition(name) ? truncateString(name, 5) : name}
           </p>
