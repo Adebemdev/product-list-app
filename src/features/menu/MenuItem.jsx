@@ -57,7 +57,7 @@ const MenuItem = ({ product, dispatch, cart }) => {
         <img
           src={image.thumbnail}
           alt={name}
-          className={`w-full rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
+          className={`mb-8 w-full rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
         />
       </picture>
 
