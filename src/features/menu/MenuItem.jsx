@@ -38,30 +38,29 @@ const MenuItem = ({ product, dispatch, cart }) => {
 
   return (
     <div className="relative">
-      <figure className="">
-        <picture>
-          <source
-            media="(max-width:767px)"
-            width="360"
-            height="480"
-            srcSet={image.desktop}
-            type="image/jpeg"
-          />
-          <source
-            media="(min-width:768px)"
-            width="1920"
-            height="1080"
-            srcSet={image.mobile}
-            type="image/jpeg"
-          />
-          <source media="" srcSet={image.thumbnail} type="image/jpeg" />
-          <img
-            src={image.mobile}
-            alt={name}
-            className={`rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
-          />
-        </picture>
-      </figure>
+      <picture>
+        <source
+          media="(max-width:767px)"
+          width="360"
+          height="480"
+          srcSet={image.mobile}
+          type="image/jpeg"
+        />
+        <source
+          media="(min-width:768px)"
+          width="1920"
+          height="1080"
+          srcSet={image.desktop}
+          type="image/jpeg"
+        />
+        <source media="" srcSet={image.thumbnail} type="image/jpeg" />
+        <img
+          src={image.mobile}
+          alt={name}
+          className={`w-full rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
+        />
+      </picture>
+
       <div className="mt-8 flex flex-col">
         <p className="text-rose400">{category}</p>
         <p className="font-bold text-rose900">{name}</p>
