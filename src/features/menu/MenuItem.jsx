@@ -63,7 +63,7 @@ const MenuItem = ({ product, dispatch, cart }) => {
           />
         </picture>
 
-        <div className="mt-4 flex flex-col">
+        <div className="laptop:mt-8 mb-4 flex flex-col">
           <p className="text-rose400">{category}</p>
           <p className="font-bold text-rose900">{name}</p>
           <p className="font-medium text-red">
