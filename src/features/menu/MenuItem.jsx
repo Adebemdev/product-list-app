@@ -58,11 +58,12 @@ const MenuItem = ({ product, dispatch, cart }) => {
           <img
             src={image.thumbnail}
             alt={name}
+            loading="lazy"
             className={`mb-8 w-full rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
           />
         </picture>
 
-        <div className="mt-4 flex flex-col bg-red">
+        <div className="mt-4 flex flex-col">
           <p className="text-rose400">{category}</p>
           <p className="font-bold text-rose900">{name}</p>
           <p className="font-medium text-red">
