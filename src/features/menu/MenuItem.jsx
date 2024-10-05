@@ -38,35 +38,37 @@ const MenuItem = ({ product, dispatch, cart }) => {
 
   return (
     <div className="relative">
-      <picture>
-        <source
-          media="(max-width: 767px)"
-          srcSet={`${image.mobile} 360w`}
-          sizes="(max-width: 767px) 100vw, 360px"
-          width="360"
-          height="480"
-        />
-        <source
-          media="(min-width: 768px)"
-          srcSet={`${image.desktop} 1920w`}
-          sizes="(min-width: 768px) 100vw, 1920px"
-          width="1920"
-          height="1080"
-        />
-        <source media="" srcSet={image.thumbnail} type="image/jpeg" />
-        <img
-          src={image.thumbnail}
-          alt={name}
-          className={`mb-8 w-full rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
-        />
-      </picture>
+      <div className="flex flex-col">
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcSet={`${image.mobile} 360w`}
+            sizes="(max-width: 767px) 100vw, 360px"
+            width="360"
+            height="480"
+          />
+          <source
+            media="(min-width: 768px)"
+            srcSet={`${image.desktop} 1920w`}
+            sizes="(min-width: 768px) 100vw, 1920px"
+            width="1920"
+            height="1080"
+          />
+          <source media="" srcSet={image.thumbnail} type="image/jpeg" />
+          <img
+            src={image.thumbnail}
+            alt={name}
+            className={`mb-8 w-full rounded-md ${isItemInCart(product.id) ? 'border-4 border-red' : ''}`}
+          />
+        </picture>
 
-      <div className="mt-8 flex flex-col">
-        <p className="text-rose400">{category}</p>
-        <p className="font-bold text-rose900">{name}</p>
-        <p className="font-medium text-red">
-          {formatCurrency(price.toFixed(2))}
-        </p>
+        <div className="mt-4 flex flex-col bg-red">
+          <p className="text-rose400">{category}</p>
+          <p className="font-bold text-rose900">{name}</p>
+          <p className="font-medium text-red">
+            {formatCurrency(price.toFixed(2))}
+          </p>
+        </div>
       </div>
       {quantity === 0 ? (
         <Button
